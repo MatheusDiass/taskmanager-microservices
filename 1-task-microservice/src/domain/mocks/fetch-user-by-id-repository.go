@@ -1,13 +1,13 @@
 package mocks
 
-type FetchUserByIdRepositoryMock struct {
+type fetchUserByIdRepositoryMock struct {
 }
 
-func NewFetchUserByIdRepositoryMock() *FetchUserByIdRepositoryMock {
-	return &FetchUserByIdRepositoryMock{}
+func NewFetchUserByIdRepositoryMock() fetchUserByIdRepositoryMock {
+	return fetchUserByIdRepositoryMock{}
 }
 
-func (r FetchUserByIdRepositoryMock) Execute(id uint) (uint, error) {
+func (r fetchUserByIdRepositoryMock) Execute(id uint) (uint, error) {
 	if id == 1 {
 		return id, nil
 	}
