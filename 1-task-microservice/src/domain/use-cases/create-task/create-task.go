@@ -25,19 +25,21 @@ func (t createTaskUseCase) Execute(title, description string, userId uint) error
 		return err
 	}
 
-	//Check if the user not found
 	userIdDb, err := t.fetchUserByIdRepository.Execute(task.UserId)
 
 	if err != nil {
 		return err
 	}
 
+	//Check if the user not found
 	if userIdDb == 0 {
 		return errors.New("user not found")
 	}
 
 	//Create task
-	t.createTaskRepository.Execute(task)
+	if err = t.createTaskRepository.Execute(task); err != nil {
+		return err
+	}
 
 	return nil
 }
