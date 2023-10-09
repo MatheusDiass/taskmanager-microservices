@@ -2,8 +2,7 @@ package mocks
 
 import "task-microservice/src/domain/entity"
 
-type createTaskRepository struct {
-}
+type createTaskRepository struct{}
 
 func NewCreateTaskRepository() createTaskRepository {
 	return createTaskRepository{}
