@@ -8,15 +8,15 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-type ChiAdapter struct {
+type chiAdapter struct {
 	router *chi.Mux
 }
 
-func NewChiAdapter() ChiAdapter {
-	return ChiAdapter{chi.NewRouter()}
+func NewChiAdapter() chiAdapter {
+	return chiAdapter{chi.NewRouter()}
 }
 
-func (adapter ChiAdapter) CreateRoute(route types.Route) {
+func (adapter chiAdapter) CreateRoute(route types.Route) {
 	switch route.Method {
 	case http.MethodGet:
 		adapter.router.Get(route.Uri, route.Function)
@@ -35,6 +35,6 @@ func (adapter ChiAdapter) CreateRoute(route types.Route) {
 	}
 }
 
-func (adapter ChiAdapter) GetRouter() *chi.Mux {
+func (adapter chiAdapter) GetRouter() *chi.Mux {
 	return adapter.router
 }
