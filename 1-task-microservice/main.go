@@ -4,12 +4,17 @@ import (
 	"fmt"
 	"net/http"
 	"task-microservice/src/main/adapters"
+	"task-microservice/src/main/config"
 	"task-microservice/src/main/factories"
 	"task-microservice/src/main/types"
 )
 
+func init() {
+	config.SetupEnvironmentVariables()
+}
+
 func main() {
-	runMessage := "🚀 task service is running at http://localhost:5000"
+	runMessage := fmt.Sprintf("🚀 task service is running at http://localhost:%d", config.Port)
 
 	httpAdapter := adapters.NewChiAdapter()
 	httpAdapter.CreateRoute(types.Route{
@@ -24,5 +29,5 @@ func main() {
 	factories.BuildRoutes(httpAdapter)
 
 	fmt.Println(runMessage)
-	http.ListenAndServe(":5000", httpAdapter.GetRouter())
+	http.ListenAndServe(fmt.Sprintf(":%d", config.Port), httpAdapter.GetRouter())
 }
