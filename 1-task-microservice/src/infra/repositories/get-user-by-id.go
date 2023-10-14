@@ -20,7 +20,7 @@ func (repository GetUserByIdRepository) Execute(id uint) (uint, error) {
 	result := repository.databaseAdapter.GetDb().Table("sch_user.tbl_user").Select("id").First(&user, id)
 
 	if result.Error != nil {
-		return 0, result.Error
+		return 0, nil
 	}
 
 	return user.Id, nil
