@@ -14,6 +14,8 @@ type GormAdapter struct {
 }
 
 func NewGormAdapter() GormAdapter {
+	config.SetupEnvironmentVariables()
+
 	connectionString := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=America/Sao_Paulo",
 		config.DatabaseServer,
