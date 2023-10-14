@@ -2,16 +2,19 @@ package routes
 
 import (
 	"net/http"
+	factories "task-microservice/src/main/factories/controllers"
 	"task-microservice/src/main/types"
+)
+
+var (
+	createTaskController = factories.CreateTaskControllerFactory{}.Create()
 )
 
 var TaskRoutes = []types.Route{
 	{
-		Uri:    "/tasks",
-		Method: http.MethodPost,
-		Function: func(w http.ResponseWriter, r *http.Request) {
-			w.Write([]byte("Save task route!"))
-		},
+		Uri:      "/tasks",
+		Method:   http.MethodPost,
+		Function: createTaskController.Handle,
 	},
 	{
 		Uri:    "/tasks/{id}",

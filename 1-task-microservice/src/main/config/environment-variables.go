@@ -33,7 +33,7 @@ func SetupEnvironmentVariables() {
 
 	//Database
 	DatabaseServer = os.Getenv("DB_SERVER")
-	DatabasePort, err = strconv.Atoi(os.Getenv("PORT"))
+	DatabasePort, err = strconv.Atoi(os.Getenv("DB_PORT"))
 
 	if err != nil {
 		log.Fatal(err)

@@ -6,18 +6,18 @@ import (
 	"task-microservice/src/domain/entity"
 )
 
-type createTaskUseCase struct {
+type CreateTaskUseCase struct {
 	fetchUserByIdRepository contracts.FetchUserByIdRepository
 	createTaskRepository    contracts.CreateTaskRepository
 }
 
 func NewCreateTaskUseCase(
 	fetchUserByIdRepository contracts.FetchUserByIdRepository,
-	createTaskRepository contracts.CreateTaskRepository) createTaskUseCase {
-	return createTaskUseCase{fetchUserByIdRepository, createTaskRepository}
+	createTaskRepository contracts.CreateTaskRepository) CreateTaskUseCase {
+	return CreateTaskUseCase{fetchUserByIdRepository, createTaskRepository}
 }
 
-func (t createTaskUseCase) Execute(title, description string, userId uint) error {
+func (t CreateTaskUseCase) Execute(title, description string, userId uint) error {
 	task := entity.Task{Title: title, Description: description, UserId: userId}
 
 	//Entity validation
